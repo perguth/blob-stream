@@ -1,6 +1,15 @@
 const html = require('choo/html')
 
-module.exports = streamView
+module.exports = (state, prev, send) => html`
+  <main>
+    <h1>blob-stream</h1>
+    <form><input type=file accept=image/* multiple
+      onchange=${(e) => send('fileSelected', {fileList: e.target.files})}></form>
+    <ol>
+      ${latestBlobs(state)}
+    </ol>
+  </main>
+`
 
 function latestBlobs (state) {
   return state.blobs.map((elem, index) => {
@@ -10,17 +19,4 @@ function latestBlobs (state) {
       </li>
     `
   })
-}
-
-function streamView (state, prev, send) {
-  return html`
-    <main>
-      <h1>blob-stream</h1>
-      <form><input type=file accept=image/* multiple
-        onchange=${(e) => send('fileSelected', {fileList: e.target.files})}></form>
-      <ol>
-        ${latestBlobs(state)}
-      </ol>
-    </main>
-  `
 }
