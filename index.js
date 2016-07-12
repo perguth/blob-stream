@@ -9,17 +9,16 @@ var state = {
 }
 var reducers = {
   // synchronous functions that modify state
+  // Signature of (data, state)
 }
 var subscriptions = [
   // read-only data sources that emit actions
+  // Signature of (send, done)
 ]
-var effects = {
-  // asynchronous functions that emit an action when done
-}
 
 const model = {
   // models are objects that contain initial state, subscriptions, effects and reducers.
-  state, reducers, subscriptions, effects
+  state, reducers, subscriptions, effects: require('./effects')
 }
 
 app.model(model)

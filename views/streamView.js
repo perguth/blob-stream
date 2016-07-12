@@ -16,7 +16,7 @@ function streamView (params, state, send) {
   return choo.view`
     <main>
       <h1>blob-stream</h1>
-      <form><input type=file></form>
+      <form><input type=file accept='image/*' onchange=${(e) => send('fileSelected', {fileHandle: e.target.files[0]})}></form>
       <ol>
         ${latestBlobs(state)}
       </ol>
