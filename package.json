@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/blob-stream/web-node#readme",
   "dependencies": {
-    "choo": "^2.2.2"
+    "choo": "^3.0.2"
   },
   "devDependencies": {
     "budo": "^8.3.0"
