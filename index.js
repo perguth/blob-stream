@@ -1,34 +1,33 @@
 const choo = require('choo')
 const app = choo()
 
-var state = {}
+var state = {
+  blobs: [
+    {date: '08.08.1985'},
+    {date: '13.03.1987'}
+  ]
+}
 var reducers = {
-  print: (action, state) => ({ title: action.payload })
+  // synchronous functions that modify state
 }
 var subscriptions = [
-  (send) => setInterval(() => send('print', { payload: 'dawg?' }), 1000)
+  // read-only data sources that emit actions
 ]
 var effects = {
-  print: (action, reducer) => {
-    console.log(action.payload)
-    console.log(reducer)
-  }
+  // asynchronous functions that emit an action when done
 }
 
-var model = {state, reducers, subscriptions, effects}
+const model = {
+  // models are objects that contain initial state, subscriptions, effects and reducers.
+  state, reducers, subscriptions, effects
+}
+
 app.model(model)
 
-const mainView = (params, state, send) => choo.view`
-  <main>
-    <h1>blob-stream</h1>
-    <input
-      type="text"
-      oninput=${(e) => send('update', { value: e.target.value })}>
-  </main>
-`
+const streamView = require('./views/streamView.js')
 
 app.router((route) => [
-  route('/', mainView)
+  route('/', streamView)
 ])
 
 const tree = app.start()
