@@ -6,7 +6,7 @@ var reducers = {
   print: (action, state) => ({ title: action.payload })
 }
 var subscriptions = [
-  (send) => setInterval(() => {send('print', { payload: 'dawg?' })}, 1000)
+  (send) => setInterval(() => send('print', { payload: 'dawg?' }), 1000)
 ]
 var effects = {
   print: (action, reducer) => {

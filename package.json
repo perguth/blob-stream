@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "standard",
-    "start": "budo --live --host localhost index.js"
+    "start": "budo --live --host localhost index.js:app.js"
   },
   "repository": {
     "type": "git",
