@@ -6,7 +6,7 @@ module.exports = {
   fileSelected: (data, state, send, done) => {
     let fileList = data.fileList
     for (let prop in fileList) {
-      if (isNaN(+prop)) continue
+      if (isNaN(prop)) continue
       readFile(fileList.item(prop), send, done)
     }
   },
