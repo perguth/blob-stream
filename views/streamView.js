@@ -1,10 +1,10 @@
-const choo = require('choo')
+const html = require('choo/html')
 
 module.exports = streamView
 
 function latestBlobs (state) {
   return state.blobs.map((elem, index) => {
-    return choo.view`
+    return html`
       <li>
         ${elem.date}
       </li>
@@ -12,8 +12,8 @@ function latestBlobs (state) {
   })
 }
 
-function streamView (params, state, send) {
-  return choo.view`
+function streamView (state, prev, send) {
+  return html`
     <main>
       <h1>blob-stream</h1>
       <form><input type=file accept=image/* multiple

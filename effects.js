@@ -16,9 +16,7 @@ module.exports = {
 function readFile (handle, send, done) {
   let reader = new FileReader()
   reader.onload = () => {
-    send('handleFileBuffer', {fileBuffer: reader.result})
-    // throws but shoudnt:
-    // done()
+    send('handleFileBuffer', {fileBuffer: reader.result}, err => err && done(err))
   }
   reader.readAsArrayBuffer(handle)
 }
