@@ -10,13 +10,17 @@ module.exports = {
       readFile(fileList.item(prop), send, done)
     }
   },
-  handleFileBuffer: (fileBuffer) => console.log(fileBuffer)
+
+  handleFileBuffer: (data, state, send, done) => {
+    let dataUrl = data.dataUrl
+    state.log.add(null, dataUrl, err => err && done(err))
+  }
 }
 
 function readFile (handle, send, done) {
   let reader = new FileReader()
   reader.onload = () => {
-    send('handleFileBuffer', {fileBuffer: reader.result}, err => err && done(err))
+    send('handleFileBuffer', {dataUrl: reader.result}, err => err && done(err))
   }
-  reader.readAsArrayBuffer(handle)
+  reader.readAsDataURL(handle)
 }
