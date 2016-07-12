@@ -14,7 +14,6 @@ module.exports = {
 }
 
 function readFile (handle, send) {
-  console.log(handle)
   let reader = new FileReader()
   reader.onload = () => {
     send('handleFileBuffer', {fileBuffer: reader.result})
