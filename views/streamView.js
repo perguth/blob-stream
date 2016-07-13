@@ -15,9 +15,17 @@ function latestBlobs (state) {
   return state.blobs.map((elem, index) => {
     return html`
       <li>
-        ${elem.date}<br>
+        ${humanReadableDate(elem)}<br>
         <img src=${elem.dataUrl}>
       </li>
     `
   })
+}
+
+function humanReadableDate (elem) {
+  let date = new Date(elem.date)
+  return date.getDate() + '.' +
+    (date.getMonth() + 1) + '.' +
+    date.getFullYear() + ': ' +
+    date.getHours() + ':' + date.getMinutes()
 }
