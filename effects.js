@@ -13,7 +13,9 @@ module.exports = {
 
   handleFileBuffer: (data, state, send, done) => {
     let dataUrl = data.dataUrl
-    state.log.add(null, dataUrl, err => err && done(err))
+    let dateNow = Date.now()
+    let entry = {dataUrl, dateNow}
+    state.log.add(null, JSON.stringify(entry), err => err && done(err))
   }
 }
 

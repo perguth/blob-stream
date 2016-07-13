@@ -15,6 +15,7 @@ function latestBlobs (state) {
   return state.blobs.map((elem, index) => {
     return html`
       <li>
+        ${elem.date}<br>
         <img src=${elem.dataUrl}>
       </li>
     `

@@ -9,8 +9,7 @@ module.exports = (log) => [
     })
 
     changesStream.on('data', function (node) {
-      console.log('hyperlog changesStream fired')
-      send('logGrew', {'node': node}, err => err && done(err))
+      send('logGrew', node, err => err && done(err))
     })
   }
 ]
