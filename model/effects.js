@@ -3,6 +3,7 @@
 module.exports = {
   // asynchronous functions that emit an action when done
   // Signature of (data, state, send, done)
+
   fileSelected: (data, state, send, done) => {
     let fileList = data.fileList
     for (let prop in fileList) {

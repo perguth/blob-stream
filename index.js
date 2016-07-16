@@ -12,14 +12,14 @@ const model = {
     log,
     blobs: []
   },
-  reducers: require('./reducers'),
-  subscriptions: require('./subscriptions')(log),
-  effects: require('./effects')
+  reducers: require('./model/reducers'),
+  subscriptions: require('./model/subscriptions')(log),
+  effects: require('./model/effects')
 }
 
 app.model(model)
 
-const streamView = require('./views/streamView.js')
+const streamView = require('./views/stream.js')
 
 app.router((route) => [
   route('/', streamView)
