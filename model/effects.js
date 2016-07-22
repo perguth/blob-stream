@@ -4,11 +4,11 @@ module.exports = {
   // asynchronous functions that emit an action when done
   // Signature of (data, state, send, done)
 
-  'user-selected-files': (data, state, send, done) => {
+  'user selected files': (data, state, send, done) => {
     function readFile (handle, send, done) {
       let reader = new FileReader()
       reader.onload = () => {
-        send('add-entry-to-log', {dataUrl: reader.result}, err => err && done(err))
+        send('add entry to log', {dataUrl: reader.result}, err => err && done(err))
       }
       reader.readAsDataURL(handle)
     }
@@ -19,7 +19,7 @@ module.exports = {
     }
   },
 
-  'add-entry-to-log': (data, state, send, done) => {
+  'add entry to log': (data, state, send, done) => {
     let dataUrl = data.dataUrl
     let dateNow = Date.now()
     let entry = {dataUrl, dateNow}

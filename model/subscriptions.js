@@ -14,7 +14,7 @@ module.exports = (log) => [
       done(new Error('hyperlog changesStream ended'))
     })
     changesStream.on('data', node => {
-      send('append-log-entry-to-state', node, err => err && done(err))
+      send('append log entry to state', node, err => err && done(err))
     })
   },
 
