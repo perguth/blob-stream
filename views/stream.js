@@ -4,7 +4,7 @@ module.exports = (state, prev, send) => html`
   <main>
     <h1>blob-stream</h1>
     <form><input type=file accept=image/* multiple
-      onchange=${(e) => send('fileSelected', {fileList: e.target.files})}></form>
+      onchange=${(e) => send('user-selected-files', {fileList: e.target.files})}></form>
     <ol>
       ${latestBlobs(state)}
     </ol>

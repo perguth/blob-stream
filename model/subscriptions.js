@@ -2,7 +2,7 @@ module.exports = (log) => [
   // read-only data sources that emit actions
   // Signature of (send, done)
 
-  (send, done) => {
+  function subscribeToLogChanges (send, done) {
     // subscribe to all hyperlog changes
     // caused through syncing or by ourselves
     let changesStream = log.createReadStream({
@@ -10,12 +10,15 @@ module.exports = (log) => [
       limit: 5
     })
 
-    changesStream.on('data', function (node) {
-      send('logGrew', node, err => err && done(err))
+    changesStream.on('end', () => {
+      done(new Error('hyperlog changesStream ended'))
+    })
+    changesStream.on('data', node => {
+      send('append-log-entry-to-state', node, err => err && done(err))
     })
   },
 
-  (send, done) => {
-
+  function (send, done) {
+    done()
   }
 ]
