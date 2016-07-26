@@ -1,7 +1,8 @@
 var debug = require('debug')
 var debugPrefix = 'blob-stream:subscriptions'
+var log = require('../hyperlog')
 
-module.exports = (log) => [
+module.exports = [
   // read-only data sources that emit actions
   // Signature of (send, done)
 
@@ -24,20 +25,18 @@ module.exports = (log) => [
   function findWebRTCPeers (send, done) {
     var d = debug(debugPrefix + ':findWebRTCPeers')
 
-    var webrtcSwarm = require('webrtc-swarm')
+    var webrtcSwarm = require('webrtc-swarm', {end: false})
     var signalhub = require('signalhub')
     var hub = signalhub('blob-stream', ['https://signalhub.perguth.de:65300'])
     var swarm = webrtcSwarm(hub)
 
-    var peers = []
     swarm.on('connect', (peer, id) => {
       d('✔ peer connected', id)
-      peers[id] = peer
+      send('sync with peer', {peer, id}, err => err && done(err))
     })
     swarm.on('disconnect', (peer, id) => {
       d('✕ peer disconnected', id)
-      var i = peers.indexOf(peer)
-      if (i > -1) peers.splice(i, 1)
+      send('forget peer', {peer, id}, err => err && done(err))
     })
   }
 ]

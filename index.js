@@ -1,19 +1,14 @@
 const choo = require('choo')
 const app = choo()
-const hyperlog = require('hyperlog')
-const levelup = require('levelup')
-
-var db = levelup('./db', { db: require('memdown') })
-var log = hyperlog(db)
 
 const model = {
   // models are objects that contain initial state, subscriptions, effects and reducers.
   state: {
-    log,
+    peers: new Set(),
     blobs: []
   },
   reducers: require('./model/reducers'),
-  subscriptions: require('./model/subscriptions')(log),
+  subscriptions: require('./model/subscriptions'),
   effects: require('./model/effects')
 }
 

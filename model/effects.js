@@ -1,4 +1,20 @@
 /*global FileReader */
+var log = require('../hyperlog')
+
+/*
+var peers = new Set()
+var nextPeerGenerator = function * () {
+  while (true) {
+    let allPeers = peers.entries()
+    do {
+      var peer = allPeers.next().value
+      console.log('will yield', peer, peers.size)
+      yield peer
+    } while (peer)
+  }
+}
+var nextPeer = nextPeerGenerator()
+*/
 
 module.exports = {
   // asynchronous functions that emit an action when done
@@ -23,6 +39,22 @@ module.exports = {
     let dataUrl = data.dataUrl
     let dateNow = Date.now()
     let entry = {dataUrl, dateNow}
-    state.log.add(null, JSON.stringify(entry), err => err && done(err))
+    log.add(null, JSON.stringify(entry), err => err && done(err))
+  },
+
+  'sync with peer': (data, state, send, done) => {
+    send('add peer', data, err => err && done(err))
+
+    var rs = log.createReplicationStream({live: true})
+    rs.on('end', () => {
+      console.log('in sync with peer:', data.id)
+      // rs.unpipe(data.peer)
+      // done()
+    })
+    rs.pipe(data.peer).pipe(rs)
+  },
+
+  'forget peer': (data, state, send, done) => {
+    send('delete peer', data, err => err && done(err))
   }
 }
