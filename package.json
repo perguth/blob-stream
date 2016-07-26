@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/blob-stream/web-node#readme",
   "dependencies": {
-    "choo": "^3.0.2"
+    "choo": "^3.0.2",
+    "signalhub": "^4.7.4",
+    "webrtc-swarm": "^2.6.1"
   },
   "devDependencies": {
     "budo": "^8.3.0"

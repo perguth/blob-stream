@@ -18,7 +18,20 @@ module.exports = (log) => [
     })
   },
 
-  function (send, done) {
-    done()
+  function findWebRTCPeers (send, done) {
+    var webrtcSwarm = require('webrtc-swarm')
+    var signalhub = require('signalhub')
+    var hub = signalhub('blob-stream', ['https://signalhub.perguth.de:65300'])
+    var swarm = webrtcSwarm(hub)
+
+    var peers = []
+    swarm.on('connect', (peer, id) => {
+      console.log('whohooo, new peer!')
+      peers[id] = peer
+    })
+    swarm.on('disconnect', (peer, id) => {
+      var i = peers.indexOf(peer)
+      if (i > -1) peers.splice(i, 1)
+    })
   }
 ]
