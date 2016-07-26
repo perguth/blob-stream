@@ -13,9 +13,7 @@ module.exports = (log) => [
       limit: 5
     })
 
-    changesStream.on('end', () => {
-      done(new Error('hyperlog changesStream ended'))
-    })
+    changesStream.on('end', () => done(new Error('hyperlog createReadStream ended')))
     changesStream.on('data', node => {
       send('append log entry to state', node, err => err && done(err))
     })
@@ -36,6 +34,6 @@ module.exports = (log) => [
     swarm.on('disconnect', (peer, id) => {
       d('✕ peer disconnected', id)
     })
-    swarm.on('close', () => done())
+    swarm.on('close', () => done(new Error('swarm closed')))
   }
 ]
