@@ -10,18 +10,5 @@ module.exports = {
 
     newState.blobs.unshift({date, dataUrl})
     return newState
-  },
-
-  'add peer': (data, state) => {
-    console.log('adding peer to state', data.id)
-    var newState = Object.assign({}, state)
-    newState.peers.add(data.peer)
-    return newState
-  },
-
-  'delete peer': (data, state) => {
-    var newState = Object.assign({}, state)
-    newState.peers.delete(data.peer)
-    return newState
   }
 }

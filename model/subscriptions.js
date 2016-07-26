@@ -36,7 +36,6 @@ module.exports = [
     })
     swarm.on('disconnect', (peer, id) => {
       d('✕ peer disconnected', id)
-      send('forget peer', {peer, id}, err => err && done(err))
     })
   }
 ]
