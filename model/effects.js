@@ -1,4 +1,6 @@
 /*global FileReader */
+var debug = require('debug')
+var debugPrefix = 'blob-stream:effects'
 var log = require('../hyperlog')
 
 module.exports = {
@@ -28,17 +30,24 @@ module.exports = {
   },
 
   'sync with peer': (data, state, send, done) => {
+    var d = debug(debugPrefix + ':sync-with-peer')
     var peer = data.peer
+
+    peer.on('error', err => {
+      d('simple-peer error')
+      done(err)
+    })
+    peer.on('close', () => {
+      d('simple-peer closed')
+      done()
+    })
 
     var rs = log.createReplicationStream({live: true})
     rs.on('end', () => {
-      console.log('this is the wtf case')
+      d('replication stream ended')
+      done()
     })
-    rs.pipe(peer).pipe(rs)
 
-    peer.on('disconnect', (err) => {
-      rs.unpipe()
-      done(err)
-    })
+    rs.pipe(peer).pipe(rs)
   }
 }
