@@ -19,13 +19,14 @@ module.exports = {
       if (isNaN(prop)) continue
       readFile(fileList.item(prop), send, done)
     }
+    done()
   },
 
   'add entry to log': (data, state, send, done) => {
     let dataUrl = data.dataUrl
     let dateNow = Date.now()
     let entry = {dataUrl, dateNow}
-    state.log.add(null, JSON.stringify(entry), err => err && done(err))
+    state.log.add(null, JSON.stringify(entry), err => done(err))
   },
 
   'sync with peer': (data, state, send, done) => {

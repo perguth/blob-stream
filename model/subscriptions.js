@@ -31,11 +31,11 @@ module.exports = (log) => [
 
     swarm.on('connect', (peer, id) => {
       d('✔ peer connected', id)
-      send('sync with peer', {peer, id}, err => done(err))
+      send('sync with peer', {peer, id}, err => err && done(err))
     })
     swarm.on('disconnect', (peer, id) => {
       d('✕ peer disconnected', id)
-      done()
     })
+    swarm.on('close', () => done())
   }
 ]
