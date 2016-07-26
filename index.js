@@ -1,14 +1,16 @@
 const choo = require('choo')
 const app = choo()
+const hyperlog = require('./hyperlog')()
 
 const model = {
   // models are objects that contain initial state, subscriptions, effects and reducers.
   state: {
+    log: hyperlog,
     peers: new Set(),
     blobs: []
   },
   reducers: require('./model/reducers'),
-  subscriptions: require('./model/subscriptions'),
+  subscriptions: require('./model/subscriptions')(hyperlog),
   effects: require('./model/effects')
 }
 

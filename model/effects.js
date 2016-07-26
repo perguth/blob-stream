@@ -1,7 +1,6 @@
 /*global FileReader */
 var debug = require('debug')
 var debugPrefix = 'blob-stream:effects'
-var log = require('../hyperlog')
 
 module.exports = {
   // asynchronous functions that emit an action when done
@@ -26,7 +25,7 @@ module.exports = {
     let dataUrl = data.dataUrl
     let dateNow = Date.now()
     let entry = {dataUrl, dateNow}
-    log.add(null, JSON.stringify(entry), err => err && done(err))
+    state.log.add(null, JSON.stringify(entry), err => err && done(err))
   },
 
   'sync with peer': (data, state, send, done) => {
@@ -42,7 +41,7 @@ module.exports = {
       done()
     })
 
-    var rs = log.createReplicationStream({live: true})
+    var rs = state.log.createReplicationStream({live: true})
     rs.on('end', () => {
       d('replication stream ended')
       done()
