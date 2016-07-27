@@ -1,6 +1,6 @@
 /* global FileReader */
-var debug = require('debug')
-var debugPrefix = 'blob-stream:effects'
+// var debug = require('debug')
+// var debugPrefix = 'blob-stream:effects'
 
 module.exports = {
   // asynchronous functions that emit an action when done
@@ -28,20 +28,17 @@ module.exports = {
   },
 
   'create log entry': (data, state, send, done) => {
-    var d = debug(debugPrefix + ':create-log-entry')
+    // var d = debug(debugPrefix + ':create-log-entry')
     var magnetLink = data.magnetLink
     var dateNow = Date.now()
 
     let entry = {magnetLink, dateNow}
-    d('saving entry to log', entry)
     state.log.add(null, JSON.stringify(entry), (err, node) => err && done(err))
   },
 
   'create torrent': (data, state, send, done) => {
     // var d = debug(debugPrefix + ':create-torrent')
     var file = data.file
-    var name = data.name
-    console.log(name, file)
     state.swarm.seed(file, {}, torrent => {
       send('create log entry', Object.assign(data, {
         magnetLink: torrent.magnetURI

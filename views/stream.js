@@ -29,7 +29,3 @@ function humanReadableDate (date) {
     date.getFullYear() + ': ' +
     date.getHours() + ':' + date.getMinutes()
 }
-
-function getTorrent (magnetLink) {
-  return magnetLink
-}
