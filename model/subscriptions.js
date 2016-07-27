@@ -15,7 +15,7 @@ module.exports = (log) => [
 
     changesStream.on('end', () => done(new Error('hyperlog createReadStream ended')))
     changesStream.on('data', node => {
-      send('append log entry to state', node, err => err && done(err))
+      send('get torrent', JSON.parse(node.value.toString()), err => err && done(err))
     })
   },
 

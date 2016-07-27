@@ -3,9 +3,8 @@ module.exports = {
   // Signature of (data, state)
 
   'append log entry to state': (data, state) => {
-    var entry = JSON.parse(data.value.toString())
-    var dataUrl = entry.dataUrl
-    var date = entry.dateNow
+    var dataUrl = data.dataUrl
+    var date = data.dateNow
     var newState = Object.assign({}, state)
 
     newState.blobs.unshift({date, dataUrl})

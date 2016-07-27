@@ -15,17 +15,22 @@ function latestBlobs (state) {
   return state.blobs.map((elem, index) => {
     return html`
       <li>
-        ${humanReadableDate(elem)}<br>
-        <img src=${elem.dataUrl}>
+        <p>${humanReadableDate(elem.date)}</p>
+        <p>Magnet link: ${getTorrent(elem.magnetLink)}</p>
+        <img id=a src=#>
       </li>
     `
   })
 }
 
-function humanReadableDate (elem) {
-  let date = new Date(elem.date)
+function humanReadableDate (date) {
+  date = new Date(date)
   return date.getDate() + '.' +
     (date.getMonth() + 1) + '.' +
     date.getFullYear() + ': ' +
     date.getHours() + ':' + date.getMinutes()
+}
+
+function getTorrent (magnetLink) {
+  return magnetLink
 }

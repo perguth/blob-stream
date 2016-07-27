@@ -1,11 +1,13 @@
 const choo = require('choo')
 const app = choo()
 const hyperlog = require('./hyperlog')()
+const WebTorrent = require('webtorrent')
 
 const model = {
   // models are objects that contain initial state, subscriptions, effects and reducers.
   state: {
     log: hyperlog,
+    swarm: new WebTorrent(),
     peers: new Set(),
     blobs: []
   },
