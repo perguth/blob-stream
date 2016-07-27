@@ -17,7 +17,7 @@ function latestBlobs (state) {
       <li>
         <p>${humanReadableDate(elem.date)}</p>
         <p>Magnet link: ${getTorrent(elem.magnetLink)}</p>
-        <img id=a src=#>
+        <img src=${elem.dataUrl}>
       </li>
     `
   })
