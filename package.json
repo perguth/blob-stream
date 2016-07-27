@@ -1,10 +1,10 @@
 {
   "name": "web-node",
+  "description": "",
   "version": "0.1.0",
-  "main": "index.js",
   "scripts": {
     "test": "standard",
-    "start": "budo --live --host localhost index.js:app.js"
+    "start": "budo --live --host localhost browser.js:app.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,5 @@
   },
   "devDependencies": {
     "budo": "^8.3.0"
-  },
-  "description": ""
+  }
 }
