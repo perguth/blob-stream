@@ -1,7 +1,6 @@
 /* global FileReader */
 var debug = require('debug')
 var debugPrefix = 'blob-stream:effects'
-var rusha = new (require('rusha'))()
 
 module.exports = {
   // asynchronous functions that emit an action when done
@@ -12,10 +11,8 @@ module.exports = {
       var reader = new FileReader()
       reader.onload = () => {
         var dataUrl = reader.result
-        var hash = rusha.digestFromString(dataUrl)
         send('create torrent', {
           file,
-          name: hash,
           dataUrl
         }, err => err && done(err))
       }
@@ -45,7 +42,7 @@ module.exports = {
     var file = data.file
     var name = data.name
     console.log(name, file)
-    state.swarm.seed(file, {name}, torrent => {
+    state.swarm.seed(file, {}, torrent => {
       send('create log entry', Object.assign(data, {
         magnetLink: torrent.magnetURI
       }), err => err && done(err))
