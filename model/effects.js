@@ -52,7 +52,7 @@ module.exports = {
     })
   },
 
-  'get torrent': (data, state, send, done) => {
+  'attach dataUrl': (data, state, send, done) => {
     //  var d = debug(debugPrefix + ':get-torrent')
     var magnetLink = data.magnetLink
     var torrent = state.swarm.get(magnetLink)
@@ -60,8 +60,7 @@ module.exports = {
     function handleTorrent (torrent) {
       torrent.files[0].getBlobURL((err, dataUrl) => {
         if (err) done(err)
-        send('append log entry to state', Object.assign({
-          data,
+        send('append log entry to state', Object.assign(data, {
           dataUrl
         }), err => err && done(err))
       })
@@ -71,9 +70,7 @@ module.exports = {
       handleTorrent(torrent)
       return
     }
-    state.swarm.add(magnetLink, {}, torrent => {
-      handleTorrent(torrent)
-    })
+    state.swarm.add(magnetLink, {}, torrent => handleTorrent(torrent))
   },
 
   'sync with peer': (data, state, send, done) => {
