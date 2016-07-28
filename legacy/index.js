@@ -6,7 +6,7 @@ var dirty = require('dirty') // DB
 // var hash = input => rusha.digestFromString(input)
 
 var path = require('path').dirname(require.main.filename)
-var folder = path + '/blob-stream'
+var folder = path + '/ephemeral'
 
 if (!fs.existsSync(folder)) {
   console.log('creating `blob-stream` directory!')
