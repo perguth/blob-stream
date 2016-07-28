@@ -6,6 +6,7 @@ module.exports = (log) => [
   // Signature of (send, done)
 
   function subscribeToLogChanges (send, done) {
+    var effect = send
     // subscribe to all hyperlog changes
     // caused through syncing or by ourselves
     var changesStream = log.createReadStream({
@@ -15,7 +16,8 @@ module.exports = (log) => [
 
     changesStream.on('end', () => done(new Error('hyperlog createReadStream ended')))
     changesStream.on('data', node => {
-      send('attach dataUrl', JSON.parse(node.value.toString()), err => err && done(err))
+      effect('fetch_related_torrent', JSON.parse(node.value.toString()),
+        err => err && done(err))
     })
   },
 

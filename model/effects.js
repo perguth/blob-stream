@@ -46,7 +46,7 @@ module.exports = {
     })
   },
 
-  'attach dataUrl': (data, state, send, done) => {
+  'fetch_related_torrent': (data, state, send, done) => {
     //  var d = debug(debugPrefix + ':get-torrent')
     var magnetLink = data.magnetLink
     var torrent = state.swarm.get(magnetLink)
