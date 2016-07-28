@@ -4,8 +4,7 @@
   "version": "0.1.0",
   "scripts": {
     "test": "standard && tape test.js",
-    "start": "budo --live --host localhost index.js:app.js",
-    "legacy": "nodemon legacy/index.js"
+    "start": "budo --live --host localhost index.js:app.js"
   },
   "repository": {
     "type": "git",
@@ -20,15 +19,11 @@
   "dependencies": {
     "choo": "^3.2.0",
     "debug": "^2.2.0",
-    "dirty": "^1.0.0",
-    "rusha": "^0.8.3",
     "signalhub": "^4.7.4",
     "webrtc-swarm": "^2.6.1",
     "webtorrent": "^0.95.2"
   },
   "devDependencies": {
-    "budo": "^8.3.0",
-    "standard": "^7.1.2",
-    "tape": "^4.6.0"
+    "budo": "^8.3.0"
   }
 }
