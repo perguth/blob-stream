@@ -3,7 +3,7 @@
   "description": "",
   "version": "0.1.0",
   "scripts": {
-    "test": "standard",
+    "test": "standard && tape test.js",
     "start": "budo --live --host localhost browser.js:app.js",
     "legacy": "nodemon legacy/node.js"
   },
@@ -27,6 +27,8 @@
     "webtorrent": "^0.95.2"
   },
   "devDependencies": {
-    "budo": "^8.3.0"
+    "budo": "^8.3.0",
+    "standard": "^7.1.2",
+    "tape": "^4.6.0"
   }
 }
