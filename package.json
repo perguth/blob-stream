@@ -4,7 +4,8 @@
   "version": "0.1.0",
   "scripts": {
     "test": "standard && tape test.js",
-    "start": "budo --live --host localhost index.js:app.js"
+    "start": "budo --live --host localhost index.js:app.js",
+    "legacy": "cd legacy && npm start"
   },
   "repository": {
     "type": "git",
