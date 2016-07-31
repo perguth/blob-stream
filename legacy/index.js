@@ -3,11 +3,11 @@ var fs = require('fs')
 var path = require('path')
 var chokidar = require('chokidar') // file watcher
 var flatfile = require('flat-file-db')
-var log = require('./hyperlog')
 
 var pwd = path.dirname(require.main.filename) + '/'
 var ephemeralFolder = pwd + 'ephemeral/'
 var blobFolder = '../blob-stream'
+var log = require('./hyperlog')({pwd, ephemeralFolder, blobFolder})
 
 function ensureFolderExists (folders) {
   folders.forEach(path => { if (!fs.existsSync(path)) fs.mkdirSync(path) })

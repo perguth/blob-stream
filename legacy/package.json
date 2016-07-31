@@ -13,6 +13,7 @@
     "chokidar": "^1.6.0",
     "dirty": "^1.0.0",
     "electron-webrtc": "^0.2.7",
+    "file-exists": "^1.0.0",
     "flat-file-db": "^1.0.0",
     "level": "^1.4.0",
     "standard": "^7.1.2",
