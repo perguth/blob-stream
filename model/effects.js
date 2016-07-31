@@ -33,7 +33,7 @@ module.exports = {
     var dateNow = Date.now()
 
     let entry = {magnetLink, dateNow}
-    state.log.add(null, JSON.stringify(entry), (err, node) => err && done(err))
+    state.log.add(null, JSON.stringify(entry), (err, node) => !err || done(err))
   },
 
   'create torrent': (data, state, send, done) => {

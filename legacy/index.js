@@ -3,8 +3,7 @@ var fs = require('fs')
 var path = require('path')
 var chokidar = require('chokidar') // file watcher
 var flatfile = require('flat-file-db')
-var WebTorrent = require('webtorrent')
-var effects = require('../model/effects')
+var log = require('./hyperlog')
 
 var pwd = path.dirname(require.main.filename) + '/'
 var ephemeralFolder = pwd + 'ephemeral/'
@@ -30,7 +29,7 @@ db.on('open', () => {
     if (db.get(path)) return
     console.log('adding file: ', path)
     db.put(path, true)
-    addLogEntry(path)
+    log.add(path)
   }
   watcher.on('change', newFile)
   watcher.on('add', newFile)
@@ -40,18 +39,3 @@ db.on('open', () => {
     db.rm(path, true)
   })
 })
-
-var hyperlog = require('hyperlog')
-var levelup = require('level')
-var leveldb = levelup('./ephemeral/hyperlog_state')
-var log = hyperlog(leveldb)
-
-function addLogEntry (file) {
-  var data = {'file': file}
-  var swarm = new WebTorrent()
-  var state = {log, swarm}
-  effects['create torrent'](data, state, (_, data) => {
-    data = {'magnetLink': data.magnetLink}
-    effects['create log entry'](data, state, _, err => err && console.log(err))
-  })
-}

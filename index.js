@@ -12,7 +12,7 @@ const model = {
     blobs: []
   },
   reducers: require('./model/reducers'),
-  subscriptions: require('./model/subscriptions')(hyperlog),
+  subscriptions: require('./model/subscriptions')({}, hyperlog),
   effects: require('./model/effects')
 }
 

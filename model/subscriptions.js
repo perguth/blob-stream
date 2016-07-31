@@ -1,11 +1,12 @@
 var debug = require('debug')
 var debugPrefix = 'blob-stream:subscriptions'
 
-module.exports = (log) => [
+module.exports = (legacy, log) => [
   // read-only data sources that emit actions
   // Signature of (send, done)
 
   function subscribeToLogChanges (send, done) {
+    var d = debug(debugPrefix + ':subscribeToLogChanges')
     var effect = send
     // subscribe to all hyperlog changes
     // caused through syncing or by ourselves
@@ -16,6 +17,7 @@ module.exports = (log) => [
 
     changesStream.on('end', () => done(new Error('hyperlog createReadStream ended')))
     changesStream.on('data', node => {
+      d('received log entry', node.value.toString())
       effect('fetch_related_torrent', JSON.parse(node.value.toString()),
         err => err && done(err))
     })
@@ -27,7 +29,8 @@ module.exports = (log) => [
     var webrtcSwarm = require('webrtc-swarm')
     var signalhub = require('signalhub')
     var hub = signalhub('blob-stream', ['https://signalhub.perguth.de:65300'])
-    var swarm = webrtcSwarm(hub)
+    var swarmOpts = legacy || {}
+    var swarm = webrtcSwarm(hub, swarmOpts)
 
     swarm.on('connect', (peer, id) => {
       d('✔ peer connected', id)
