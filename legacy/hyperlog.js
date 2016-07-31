@@ -13,9 +13,11 @@ var fs = require('fs')
 var swarm = new WebTorrentHybrid()
 var state = {log, swarm}
 var blobFolder
+var db
 
-module.exports = (path) => {
-  blobFolder = path.blobFolder
+module.exports = (opts) => {
+  db = opts.db
+  blobFolder = opts.blobFolder
   return {
     add: (file) => {
       console.log('adding', file)
@@ -39,21 +41,18 @@ findWebRTCPeers((next, data) => {
 var subscribeToLogChanges = subscriptions.find(elem => elem.name === 'subscribeToLogChanges')
 
 subscribeToLogChanges((next, data) => {
-  console.log('subscribeToLogChanges ->', next, data)
-
   function writeToDisk (torrent) {
-    console.log('writeToDisk')
     var fqn = blobFolder + '/' + torrent.name
     if (fileExists(fqn)) {
       console.log('file exists', torrent.name)
       return
     }
+    db.put(fqn, true)
     var ws = fs.createWriteStream(fqn)
     torrent.files[0].createReadStream().pipe(ws)
   }
 
   var send = (next, data) => {
-    console.log('got torrent', data.torrent)
     var torrent = data.torrent
     writeToDisk(torrent)
   }
