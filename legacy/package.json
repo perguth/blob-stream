@@ -16,6 +16,7 @@
     "file-exists": "^1.0.0",
     "flat-file-db": "^1.0.0",
     "level": "^1.4.0",
+    "node-notifier": "^4.6.0",
     "relative-path": "^1.1.0",
     "standard": "^7.1.2",
     "tape": "^4.6.0"

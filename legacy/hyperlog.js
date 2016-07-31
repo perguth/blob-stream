@@ -9,6 +9,7 @@ var subscriptions = require('../model/subscriptions')({
 }, log)
 var fileExists = require('file-exists')
 var fs = require('fs')
+var notifier = require('node-notifier')
 
 var swarm = new WebTorrentHybrid()
 var state = {log, swarm}
@@ -47,6 +48,10 @@ subscribeToLogChanges((next, data) => {
       console.log('file exists', torrent.name)
       return
     }
+    notifier.notify({
+      'title': 'New blob arrived!',
+      'message': torrent.name
+    })
     db.put(fqn, true)
     var ws = fs.createWriteStream(fqn)
     torrent.files[0].createReadStream().pipe(ws)
