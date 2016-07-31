@@ -12,6 +12,7 @@
   "dependencies": {
     "chokidar": "^1.6.0",
     "dirty": "^1.0.0",
+    "flat-file-db": "^1.0.0",
     "standard": "^7.1.2",
     "tape": "^4.6.0"
   }
