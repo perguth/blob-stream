@@ -1,6 +1,4 @@
-const hyperlog = require('hyperlog')
-const levelup = require('levelup')
+var hyperlog = require('hyperlog')
+var memdb = require('memdb')
 
-var db = levelup('./db', { db: require('memdown') })
-
-module.exports = () => hyperlog(db)
+module.exports = () => hyperlog(memdb)
