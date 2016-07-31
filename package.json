@@ -5,7 +5,7 @@
   "scripts": {
     "test": "standard && tape test.js",
     "start": "budo --live --host localhost index.js:app.js",
-    "legacy": "cd legacy && npm start"
+    "legacy": "cd legacy && env HEADLESS=true npm start"
   },
   "repository": {
     "type": "git",
