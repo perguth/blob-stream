@@ -77,7 +77,7 @@ module.exports = {
     var peer = data.peer
 
     peer.on('error', err => done(err))
-    peer.on('close', () => done(new Error('simple-peer closed')))
+    peer.on('close', () => done('simple-peer closed'))
 
     var rs = state.log.createReplicationStream({live: true})
     rs.on('end', () => done(new Error('replication stream ended')))

@@ -18,19 +18,17 @@ var db = flatfile(ephemeralFolder + 'known_files.db')
 
 db.on('open', () => {
   var log = require('./hyperlog')({pwd, ephemeralFolder, blobFolder, db})
-  var watcher = chokidar.watch(blobFolder, {ignored: /\.DS_Store/, depth: 0})
+  var watcher = chokidar.watch(blobFolder, {ignored: /\.DS_Store/, depth: 1})
 
   watcher.on('addDir', path => {
     path = absolute(path)
     if (db.get(path)) return
     db.put(path, true)
-    console.log('subdirectories are not supported, ignoring:', path)
   })
 
   var newFile = path => {
     path = absolute(path)
     if (db.get(path)) return
-    console.log('adding file: ', path)
     db.put(path, true)
     log.add(path)
   }
@@ -40,6 +38,6 @@ db.on('open', () => {
   watcher.on('unlink', path => {
     path = absolute(path)
     if (!db.get(path)) return
-    db.rm(path, true)
+    db.del(path)
   })
 })
