@@ -11,8 +11,7 @@ module.exports = (legacy, log) => [
     // subscribe to all hyperlog changes
     // caused through syncing or by ourselves
     var changesStream = log.createReadStream({
-      live: true,
-      limit: 5
+      live: true
     })
 
     changesStream.on('end', () => done(new Error('hyperlog createReadStream ended')))
