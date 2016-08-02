@@ -6,6 +6,7 @@
     "test": "standard && tape test.js",
     "start": "budo --live --host localhost index.js:app.js",
     "legacy": "cd legacy && env HEADLESS=true npm start",
+    "reset-legacy": "rm -rf legacy/ephemeral/known_files.db legacy/ephemeral/hyperlog_state/",
     "build": "browserify index.js -o bundle.js"
   },
   "repository": {
