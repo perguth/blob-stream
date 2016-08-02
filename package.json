@@ -1,7 +1,7 @@
 {
-  "name": "web-node",
-  "description": "",
-  "version": "0.1.0",
+  "name": "blob-stream",
+  "description": "A choo, hyperlog, webtorrent experiment: sync images peer-to-peer.",
+  "version": "0.2.1",
   "scripts": {
     "test": "standard && tape test.js",
     "start": "budo --live --host localhost index.js:app.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/blob-stream/web-node.git"
+    "url": "git+https://github.com/pguth/blob-stream.git"
   },
-  "author": "",
+  "author": "Per Guth <mail@perguth.de>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/blob-stream/web-node/issues"
+    "url": "https://github.com/pguth/blob-stream/issues"
   },
-  "homepage": "https://github.com/blob-stream/web-node#readme",
+  "homepage": "https://github.com/pguth/blob-stream#readme",
   "dependencies": {
     "choo": "^3.2.0",
     "debug": "^2.2.0",
