@@ -2,6 +2,8 @@
 
 > A choo, hyperlog, webtorrent experiment: sync images peer-to-peer.
 
+![infrastructure drawing](assets/infrastructure-drawing.png)
+
 ## Web mode
 
 ```sh
