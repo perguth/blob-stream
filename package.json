@@ -5,7 +5,8 @@
   "scripts": {
     "test": "standard && tape test.js",
     "start": "budo --live --host localhost index.js:app.js",
-    "legacy": "cd legacy && npm start"
+    "legacy": "cd legacy && npm start",
+    "build": "browserify index.js -o bundle.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
     "webtorrent": "^0.95.2"
   },
   "devDependencies": {
+    "browserify": "^13.1.0",
     "budo": "^8.3.0"
   }
 }
