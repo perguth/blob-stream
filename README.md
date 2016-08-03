@@ -1,6 +1,6 @@
 # blob-stream
 
-> A choo, hyperlog, webtorrent experiment: sync images peer-to-peer.
+> A [choo](https://github.com/yoshuawuyts/choo), [hyperlog](https://github.com/mafintosh/hyperlog), [webtorrent](https://github.com/feross/webtorrent) experiment written in [modular](https://github.com/substack/node-browserify) [standard JS](https://github.com/feross/standard) that syncs images peer-to-peer.
 
 ![infrastructure drawing](assets/infrastructure-drawing.png)
 
