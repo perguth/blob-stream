@@ -20,16 +20,16 @@
   },
   "homepage": "https://github.com/pguth/blob-stream#readme",
   "dependencies": {
-    "choo": "^3.2.0",
-    "debug": "^2.2.0",
+    "choo": "^6.4.0",
+    "debug": "^3.1.0",
     "hyperlog": "^4.10.0",
     "memdb": "^1.3.1",
     "signalhub": "^4.7.4",
     "webrtc-swarm": "^2.6.1",
-    "webtorrent": "^0.95.2"
+    "webtorrent": "^0.98.19"
   },
   "devDependencies": {
-    "browserify": "^13.1.0",
-    "budo": "^8.3.0"
+    "browserify": "^14.4.0",
+    "budo": "^10.0.4"
   }
 }
