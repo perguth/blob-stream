@@ -1,5 +1,7 @@
 # blob-stream
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/pguth/blob-stream.svg)](https://greenkeeper.io/)
+
 > A [choo](https://github.com/yoshuawuyts/choo), [hyperlog](https://github.com/mafintosh/hyperlog), [webtorrent](https://github.com/feross/webtorrent) experiment written in [modular](https://github.com/substack/node-browserify) [standard JS](https://github.com/feross/standard) that syncs images peer-to-peer between web browsers and even MacOS/Linux.
 
 Simply open [https://pguth.github.io/blob-stream](https://pguth.github.io/blob-stream) in two web browser windows and select an image in one of them to see it work (use Chrome/Firefox).
